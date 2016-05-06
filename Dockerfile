@@ -1,7 +1,6 @@
 FROM alpine
 
-RUN echo "@edge http://nl.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories && \
-    apk update && apk add curl "libpq@edge<9.6" "postgresql-client@edge<9.6" "postgresql@edge<9.6" "postgresql-contrib@edge<9.6" && \
+RUN apk update && apk add curl postgresql-client postgresql postgresql-contrib && \
     mkdir /docker-entrypoint-initdb.d && \
     mkdir -p /var/lib/postgresql/data && \
     curl -o /usr/local/bin/gosu -sSL "https://github.com/tianon/gosu/releases/download/1.2/gosu-amd64" && \
