@@ -1,11 +1,10 @@
 # PostgreSQL docker image based on Alpine Linux
 
-[![](https://badge.imagelayers.io/kiasaki/alpine-postgres:latest.svg)](https://imagelayers.io/?images=kiasaki/alpine-postgres:latest 'Get your own badge on imagelayers.io')
-
 This repo builds a docker image that accepts the same env vars as the
 [official postgres build](https://registry.hub.docker.com/_/postgres/) but
 with a much smaller footprint. It achieves that by basing itself off the tiny
-official alpine linux image.
+official alpine linux image. **It also stores the data within the container rather than the host, so images
+can be created to capture the state of the database. The primary purpose is development.**
 
 ## Why?
 
@@ -26,9 +25,9 @@ $ make build
 
 # DockerHub
 
-This image is published on DockerHub as `docker pull kiasaki/alpine-postgres`.
+This image is published on DockerHub as `docker pull stepsaway/postgres`.
 
-[Click here to see it's DockerHub homepage](https://hub.docker.com/r/kiasaki/alpine-postgres/)
+[Click here to see it's DockerHub homepage](https://hub.docker.com/r/stepsaway/postgres/)
 
 # Usage
 
@@ -40,7 +39,7 @@ For example, you can start a basic PostgreSQL server, protected by a password,
 listening on port 5432 by running the following:
 
 ```
-$ docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d kiasaki/alpine-postgres
+$ docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -d stespaway/postgres
 ```
 
 Next, you can start you app's container while **linking** it to the PostgreSQL
